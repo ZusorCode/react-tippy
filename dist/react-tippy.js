@@ -1332,7 +1332,6 @@ function createTooltips(els) {
     if (!title && !html) return a;
 
     el.setAttribute('data-tooltipped', '');
-    el.setAttribute('aria-describedby', 'tippy-tooltip-' + id);
     (0, _removeTitle2.default)(el);
 
     var popper = (0, _createPopperElement2.default)(id, title, settings);
@@ -2261,7 +2260,7 @@ var Tippy = function () {
 
       popper.style.visibility = 'visible';
       popper.setAttribute('aria-hidden', 'false');
-
+      el.setAttribute('aria-describedby', popper.id)
       // Wait for popper's position to update
       (0, _defer2.default)(function () {
         // Sometimes the arrow will not be in the correct position, force another update
@@ -2361,6 +2360,7 @@ var Tippy = function () {
 
       popper.style.visibility = 'hidden';
       popper.setAttribute('aria-hidden', 'true');
+      el.removeAttribute('aria-describedby')
 
       (0, _applyTransitionDuration2.default)([tooltip, circle, circle ? content : null], _duration);
 
