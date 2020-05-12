@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -119,12 +119,11 @@ var Selectors = exports.Selectors = {
   ARROW: '[x-arrow]',
   TOOLTIPPED_EL: '[data-tooltipped]',
   CONTROLLER: '[data-tippy-controller]'
-};
 
-/**
-* The default settings applied to each instance
-*/
-var Defaults = exports.Defaults = {
+  /**
+  * The default settings applied to each instance
+  */
+};var Defaults = exports.Defaults = {
   html: false,
   position: 'top',
   animation: 'shift',
@@ -159,13 +158,12 @@ var Defaults = exports.Defaults = {
   popperOptions: {},
   open: undefined,
   onRequestClose: function onRequestClose() {}
-};
 
-/**
-* The keys of the defaults object for reducing down into a new object
-* Used in `getIndividualSettings()`
-*/
-var DefaultsKeys = exports.DefaultsKeys = Browser.SUPPORTED && Object.keys(Defaults);
+  /**
+  * The keys of the defaults object for reducing down into a new object
+  * Used in `getIndividualSettings()`
+  */
+};var DefaultsKeys = exports.DefaultsKeys = Browser.SUPPORTED && Object.keys(Defaults);
 
 /***/ }),
 /* 1 */
@@ -1276,7 +1274,7 @@ function createPopperInstance(data) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = createTooltips;
 
@@ -1316,46 +1314,46 @@ var idCounter = 1;
 * @return {Object[]} Array of ref data objects
 */
 function createTooltips(els) {
-  var _this = this;
+    var _this = this;
 
-  return els.reduce(function (a, el) {
-    var id = idCounter;
+    return els.reduce(function (a, el) {
+        var id = idCounter;
 
-    var settings = (0, _evaluateSettings2.default)(_this.settings.performance ? _this.settings : (0, _getIndividualSettings2.default)(el, _this.settings));
+        var settings = (0, _evaluateSettings2.default)(_this.settings.performance ? _this.settings : (0, _getIndividualSettings2.default)(el, _this.settings));
 
-    var html = settings.html,
-        trigger = settings.trigger,
-        touchHold = settings.touchHold;
+        var html = settings.html,
+            trigger = settings.trigger,
+            touchHold = settings.touchHold;
 
 
-    var title = el.getAttribute('title');
-    if (!title && !html) return a;
+        var title = el.getAttribute('title');
+        if (!title && !html) return a;
 
-    el.setAttribute('data-tooltipped', '');
-    (0, _removeTitle2.default)(el);
+        el.setAttribute('data-tooltipped', '');
+        (0, _removeTitle2.default)(el);
 
-    var popper = (0, _createPopperElement2.default)(id, title, settings);
-    var handlers = _getEventListenerHandlers2.default.call(_this, el, popper, settings);
+        var popper = (0, _createPopperElement2.default)(id, title, settings);
+        var handlers = _getEventListenerHandlers2.default.call(_this, el, popper, settings);
 
-    var listeners = [];
+        var listeners = [];
 
-    trigger.trim().split(' ').forEach(function (event) {
-      return listeners = listeners.concat((0, _createTrigger2.default)(event, el, handlers, touchHold));
-    });
+        trigger.trim().split(' ').forEach(function (event) {
+            return listeners = listeners.concat((0, _createTrigger2.default)(event, el, handlers, touchHold));
+        });
 
-    a.push({
-      id: id,
-      el: el,
-      popper: popper,
-      settings: settings,
-      listeners: listeners,
-      tippyInstance: _this
-    });
+        a.push({
+            id: id,
+            el: el,
+            popper: popper,
+            settings: settings,
+            listeners: listeners,
+            tippyInstance: _this
+        });
 
-    idCounter++;
+        idCounter++;
 
-    return a;
-  }, []);
+        return a;
+    }, []);
 }
 
 /***/ }),
@@ -2260,7 +2258,7 @@ var Tippy = function () {
 
       popper.style.visibility = 'visible';
       popper.setAttribute('aria-hidden', 'false');
-      el.setAttribute('aria-describedby', popper.id)
+
       // Wait for popper's position to update
       (0, _defer2.default)(function () {
         // Sometimes the arrow will not be in the correct position, force another update
@@ -2360,7 +2358,6 @@ var Tippy = function () {
 
       popper.style.visibility = 'hidden';
       popper.setAttribute('aria-hidden', 'true');
-      el.removeAttribute('aria-describedby')
 
       (0, _applyTransitionDuration2.default)([tooltip, circle, circle ? content : null], _duration);
 
